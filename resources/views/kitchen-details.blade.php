@@ -91,6 +91,7 @@
                             method="POST" 
                             action="{{ route('kitchen.destroy', ['id' => $kitchen->id]) }}" 
                             hx-post="{{ route('kitchen.destroy', ['id' => $kitchen->id]) }}"
+                            hx-target="#dashboard_container"
                             onsubmit="return confirm('Are you sure you want to delete this kitchen?');"
                             >
                             @csrf

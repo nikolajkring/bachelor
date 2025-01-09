@@ -38,7 +38,7 @@
                             method="POST" 
                             action="/settlements/{{ $kitchen->id }}/{{ Auth::user()->id }}" 
                             hx-post="/settlements/{{ $kitchen->id }}/{{ Auth::user()->id }}" 
-                            hx-target="#kitchen-details">
+                            hx-target="#dashboard_container">
                             @csrf
                             <button type="submit" class="bg-green-500 hover:bg-green-700 border font-bold py-2 px-4 rounded">Settle account</button>
                         </form>
@@ -51,7 +51,6 @@
                                 <thead>
                                     <tr>
                                         <th class="px-4 py-2">Credit id</th>
-                                        <th class="px-4 py-2">User id</th>
                                         <th class="px-4 py-2">Total</th>
                                     </tr>
                                 </thead>
@@ -59,7 +58,6 @@
                                     @foreach ($credits as $credit)
                                         <tr>
                                             <td class="border px-4 py-2">{{ $credit->id }}</td>
-                                            <td class="border px-4 py-2">{{ $credit->user_id }}</td>
                                             <td class="border px-4 py-2">{{ $credit->total }}</td>
                                         </tr>
                                     @endforeach
@@ -72,7 +70,6 @@
                                 <thead>
                                     <tr>
                                         <th class="px-4 py-2">Debit id</th>
-                                        <th class="px-4 py-2">User id</th>
                                         <th class="px-4 py-2">Total</th>
                                     </tr>
                                 </thead>
@@ -80,7 +77,6 @@
                                     @foreach ($debits as $debit)
                                         <tr>
                                             <td class="border px-4 py-2">{{ $debit->id }}</td>
-                                            <td class="border px-4 py-2">{{ $debit->user_id }}</td>
                                             <td class="border px-4 py-2">{{ $debit->total }}</td>
                                         </tr>
                                     @endforeach

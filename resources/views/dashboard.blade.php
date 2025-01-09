@@ -10,6 +10,8 @@
     {{-- Your kitchens --}}
     <div class="py-12" hx-indicator="#loading-spinner">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            {{-- if you have no kitchens dont show this --}}
+            
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     {{-- Your/my kitchens tjek witch kitchens you have in the pivot table --}}
@@ -32,6 +34,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="grid grid-cols-2 gap-6">
                     {{-- join a kitchen --}}

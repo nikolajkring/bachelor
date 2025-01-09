@@ -115,6 +115,8 @@ class TransactionController extends Controller
         $credits = Credit::where('kitchen_id', $kitchen_id)->where('user_id', $user_id)->where('settled', false)->get();
         $debits = Debit::where('kitchen_id', $kitchen_id)->where('user_id', $user_id)->where('settled', false)->where('total', '>', 0)->get();
 
+  
+
         return view('user_transactions-details', compact('kitchen', 'transactions', 'credits', 'debits'));
     }
 

@@ -14,7 +14,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     {{-- Your/my kitchens tjek witch kitchens you have in the pivot table --}}
                     <div>
-                        <h2 class="text-2xl font-bold mb-2">Your kitchens:</h2>
+                        <h2 class="text-2xl py-2 font-semibold text-xl">Your kitchens:</h2>
                         {{-- Display all kitchens id and name here --}}
                         <div id="kitchens-list">
                             @foreach (Auth::user()->kitchens as $kitchen)
@@ -31,33 +31,35 @@
                         </div>
                     </div>
 
-                    
-                    {{-- join a kitchen --}}
-                    <div class="pt-6">
-                        <h2 class="text-2xl font-bold mb-2">Join a kitchen:</h2>
-                        <form method="POST" action="/join-kitchen" hx-post="/join-kitchen" hx-target="#kitchens-list" hx-swap="beforeend">
-                            @csrf
-                            <div class="mb-4">
-                                <label for="kitchen_code" class="block text
-                                -gray-700 text-sm font-bold mb-2">Enter the kitchen code:</label>
-                                <input placeholder="Code here" type="text" name="kitchen_code" id="kitchen_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded">Join</button>
-                        </form>
+                    <div class="grid grid-cols-2 gap-6">
+                        {{-- join a kitchen --}}
+                        <div class="pt-6">
+                            <h2 class="text-2xl font-semibold text-l">Join a kitchen:</h2>
+                            <form method="POST" action="/join-kitchen" hx-post="/join-kitchen" hx-target="#kitchens-list" hx-swap="beforeend">
+                                @csrf
+                                <div class="mb-4">
+                                    <label for="kitchen_code" class="block text
+                                    -gray-700 text-sm font-bold">Enter the kitchen code:</label>
+                                    <input placeholder="Code here" type="text" name="kitchen_code" id="kitchen_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                </div>
+                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 border font-bold py-3 px-4 rounded">Join</button>
+                            </form>
+                        </div>
+
+                        {{-- create a kitchen --}}
+                        <div class="pt-6">
+                            <h2 class="text-2xl font-semibold text-l">Create a new kitchen:</h2>
+                            <form method="POST" action="/create-kitchen" hx-post="/create-kitchen" hx-target="#kitchens-list" hx-swap="beforeend">
+                                @csrf
+                                <div class="mb-4">
+                                    <label for="name" class="block text-gray-700 text-sm font-bold">Enter the kitchen name:</label>
+                                    <input placeholder="Name here" type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                </div>
+                                <button type="submit" class="bg-green-500 hover:bg-green-700 border font-bold py-3 px-4 rounded">Create</button>
+                            </form>
+                        </div>  
                     </div>
 
-                    {{-- create a kitchen --}}
-                    <div class="pt-6">
-                        <h2 class="text-2xl font-bold mb-2">Create a new kitchen:</h2>
-                        <form method="POST" action="/create-kitchen" hx-post="/create-kitchen" hx-target="#kitchens-list" hx-swap="beforeend">
-                            @csrf
-                            <div class="mb-4">
-                                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Enter the kitchen name:</label>
-                                <input placeholder="Name here" type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            </div>
-                            <button type="submit" class="bg-green-500 hover:bg-green-700 border font-bold py-2 px-4 rounded">Create</button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>

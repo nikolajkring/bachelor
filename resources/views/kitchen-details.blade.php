@@ -2,28 +2,34 @@
     <x-slot name="header">
         <body id="dashboard_container">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Dashboard') }}
+                {{ __('Kitchen Details') }}
             </h2>
         </body>
     </x-slot>
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h2 class="text-2xl font-bold mb-2">Welcome to {{ $kitchen->name }}</h2>
-
-                    {{-- Go back to dashboard btn with htmx --}}
-                    <div class="py-6 p-6">
-                        <a href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
-                        hx-get="/dashboard" 
-                        hx-target="#dashboard_container">Go back to dashboard</a>
-                    </div>
                     
+                    <div class="w-full grid grid-cols-2 gap-6 items-center py-2">
+                        {{-- join a kitchen --}}
+                        <div class="col-span-2">
+                            <h2 class="font-semibold text-xl">Welcome to {{ $kitchen->name }}</h2>
+                        </div>
+                        
+                        {{-- Go back to dashboard btn with htmx --}}
+                        <div class="col-span-2 flex justify-end">
+                            <a href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
+                               hx-get="/dashboard" 
+                               hx-target="#dashboard_container">Go back to dashboard</a>
+                        </div>
+                    </div>
+                        
 
                     {{-- wanna add more users? --}}
                     {{-- Check if there are any items --}}
-                    <h2>Items:</h2>
+                    {{-- <h2 class="font-semibold text-l">Items:</h2> --}}
                     
 
                     {{-- Display all items --}}
@@ -32,31 +38,31 @@
                     </div>
                     
                     {{-- wanna add more items? --}}
-                    <div class="py-12">
-                        <h2 class="text-2xl font-bold mb-2">Add more items {{ $kitchen->name }}</h2>
-                        <form 
+                    <div class="py-12"> 
+                        <h2 class="text-2xl font-bold mb-2 py-4 font-semibold text-xl">Add more items {{ $kitchen->name }}</h2>
+                        <form
+                            class="flex justify-between items-center"
                             method="POST" 
                             action="{{ route('items.store') }}" 
                             hx-post="{{ route('items.store') }}" 
                             hx-target="#items-container" 
                             hx-swap="innerHTML">
                             @csrf
-                            <input type="hidden" name="kitchen_id" value="{{ $kitchen->id }}">
-                            <div class="flex justify-between border rounded py-2 px-3">
-                                <label for="name">Item name:</label>
-                                <input type="text" name="name" id="name" required>
-                            </div>
-                            <div class="flex justify-between border rounded py-2 px-3">
-                                <label for="price">Price:</label>
-                                <input type="number" name="price" id="price" required>
-                            </div>
-                            <div class="flex justify-between border rounded py-2 px-3">
-                                <label for="amount">Amount:</label>
-                                <input type="number" name="amount" id="amount" required>
-                            </div>
+                            <input  type="hidden" name="kitchen_id" value="{{ $kitchen->id }}">
+
+                            <label for="name">Item name:</label>
+                            <input type="text" name="name" id="name" required>
+                        
+                            <label for="price">Price:</label>
+                            <input type="number" name="price" id="price" required>
+                        
+                            <label for="amount">Amount:</label>
+                            <input type="number" name="amount" id="amount" required>
+                        
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded">Add item</button>
                         </form>
                     </div>  
+                    
                 </div>
 
                 {{-- Show your transactions --}}

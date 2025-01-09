@@ -2,7 +2,7 @@
     <x-slot name="header">
         <body id="dashboard_container">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Dashboard') }}
+                {{ __('Kitchen transactions') }}
             </h2>
         </body>
     </x-slot>

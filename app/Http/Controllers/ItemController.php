@@ -147,16 +147,9 @@ class ItemController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'amount' => 'required|integer',
-        ]);
-
         $item = Item::findOrFail($id);
         $item->update($request->all());
 
-        $items = Item::where('kitchen_id', $item->kitchen_id)->get();
-        return view('partials.items', compact('items'));
+        return view('partials.item', compact('item'));
     }
 }

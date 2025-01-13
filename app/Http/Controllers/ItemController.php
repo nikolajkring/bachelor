@@ -88,22 +88,23 @@ class ItemController extends Controller
             'amount' => 'required|integer',
         ]);
 
-        // display the items for the kitchen in the kitchen-details view
-        $items = Item::where('kitchen_id', $request->kitchen_id)->get();
         
         $item = new Item($request->all());
         $item->user_id = Auth::id();
         $item->kitchen_id = $request->kitchen_id;
         $item->save();
         
+        $amount_bought = $request->input('amount_bought');
+        $items = Item::where('kitchen_id', $request->kitchen_id)->get();
+
         // Create a new transaction record
         Transaction::create([
             'item_id' => $item->id,
             'kitchen_id' => $item->kitchen_id,
             'user_id' => Auth::id(), 
             'price' => $item->price,
-            'amount' => $item->amount,
-            'total' => $item->price * $item->amount,
+            'amount' => $amount_bought,
+            'total' => $item->price * $amount_bought,
         ]);
 
         // Create debit record
@@ -114,7 +115,7 @@ class ItemController extends Controller
             // get the last transactions user_id
             'user_id' => Transaction::latest()->first()->user_id,
             // make the total negative because it's a cost for the kitchen
-            'total' => $item->price * $item->amount,
+            'total' => $item->price * $amount_bought,
         ]);
 
         // Create credit record
@@ -125,31 +126,9 @@ class ItemController extends Controller
             // get the last transactions user_id
             'user_id' => Transaction::latest()->first()->user_id,
             // make the total negative because it's a cost for the kitchen
-            'total' => ($item->price * $item->amount) * -1,
+            'total' => ($item->price * $amount_bought) * -1,
         ]);
 
         return view('partials.items', compact('items'));
-    }
-
-    // Delete an item
-    public function destroy($id)
-    {
-        $item = Item::findOrFail($id);
-        $item->delete();
-    }
-
-    // Update an item
-    public function edit($id)
-    {
-        $item = Item::findOrFail($id);
-        return view('partials.edit-items', compact('item'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $item = Item::findOrFail($id);
-        $item->update($request->all());
-
-        return view('partials.item', compact('item'));
     }
 }

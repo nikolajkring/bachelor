@@ -2,7 +2,7 @@
     <x-slot name="header">
         <body id="dashboard_container">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('Dashboard') }}
+                {{ __('Kitchen details') }}
             </h2>
         </body>
     </x-slot>
@@ -68,34 +68,36 @@
                     hx-target="#dashboard_container">Your kitchen transactions</a>
                 </div>
 
-                {{-- wanna delete the kitchen? --}}
-                <div class="py-6">
-                    <form 
-                        method="POST" 
-                        action="{{ route('kitchen.destroy', ['id' => $kitchen->id]) }}" 
-                        hx-post="{{ route('kitchen.destroy', ['id' => $kitchen->id]) }}"
-                        onsubmit="return confirm('Are you sure you want to delete this kitchen?');"
-                        >
-                        @csrf
-                        @method('DELETE')
-                        {{-- go to dashboard --}}
-                        <button type="submit" class="bg-red-500 hover:bg-red-700 border font-bold py-2 px-4 rounded">Delete kitchen</button>
-                    </form>
-                </div>
+                {{-- @if ($isOwner) --}}
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
+                    {{-- wanna delete the kitchen? --}}
+                    <div class="py-6">
+                        <form 
+                            method="POST" 
+                            action="{{ route('kitchen.destroy', ['id' => $kitchen->id]) }}" 
+                            hx-post="{{ route('kitchen.destroy', ['id' => $kitchen->id]) }}"
+                            onsubmit="return confirm('Are you sure you want to delete this kitchen?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 border font-bold py-2 px-4 rounded">Delete kitchen</button>
+                        </form>
+                    </div>
 
-                {{-- go to transactions-details.blade.php with htmx --}}
-                <div class="py-6">
-                    <a href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
-                    hx-get="/transactions/{{ $kitchen->id }}" 
-                    hx-target="#dashboard_container">Kitchen transactions</a>
+                    {{-- go to transactions-details.blade.php with htmx --}}
+                    <div class="py-6">
+                        <a href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
+                        hx-get="/transactions/{{ $kitchen->id }}" 
+                        hx-target="#dashboard_container">Kitchen transactions</a>
+                    </div>
                 </div>
+                {{-- @endif --}}
 
                 {{-- go to settle_account --}}
-                <div class="py-6">
+                {{-- <div class="py-6">
                     <a href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
                     hx-get="/settlements/{{ $kitchen->id }}" 
                     hx-target="#dashboard_container">Settle account</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

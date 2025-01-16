@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         ], [
             'name' => 'Test User',
             'password' => bcrypt('12345678'),
+            'phone_number' => '12345678',
         ]);
         
         // create 10 users

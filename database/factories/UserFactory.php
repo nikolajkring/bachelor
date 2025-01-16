@@ -31,6 +31,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // Set password to '12345678' and hash it
             'remember_token' => Str::random(10),
+            // phone number 8 digits
+            'phone_number' => fake()->numerify('########'),
         ];
     }
 

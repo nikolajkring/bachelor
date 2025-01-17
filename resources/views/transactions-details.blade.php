@@ -16,9 +16,9 @@
                         <h1 class="font-semibold text-xl">Kitchen balance {{ $debits->sum('total') - $credits->sum('total') }}</h1>
                         {{-- Go back to kitchen btn with htmx --}}
                         <div class="col-span-2 flex justify-end">
-                            <a href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
+                            <x-secondary-button href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
                             hx-get="/kitchen/{{ $kitchen->id }}" 
-                            hx-target="#dashboard_container">Go back to dashboard</a>
+                            hx-target="#dashboard_container">Go back to dashboard</x-secondary-button>
                         </div>
                     </div>
 

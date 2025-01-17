@@ -25,9 +25,9 @@
                                     <p>Kitchen code: {{ $kitchen->kitchen_code }}</p>
                                     <p>Name: {{ $kitchen->name }}</p>
                                     {{-- button to go to specific kitchen by id, using htmx and the route defined in web.php --}}
-                                    <a href="#" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded" 
+                                    <x-secondary-button href="#" class="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded" 
                                     hx-get="/kitchen/{{ $kitchen->id }}" 
-                                    hx-target="#dashboard_container">Go to kitchen</a>
+                                    hx-target="#dashboard_container">Go to kitchen</x-secondary-button>
                                 </div>
                             @endforeach
                         </div>
@@ -47,7 +47,7 @@
                                 -gray-700 text-sm font-bold">Enter the kitchen code:</label>
                                 <input placeholder="Code here" type="text" name="kitchen_code" id="kitchen_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 border font-bold py-3 px-4 rounded">Join</button>
+                            <x-secondary-button type="submit" class="bg-blue-500 hover:bg-blue-700 border font-bold py-3 px-4 rounded">Join</x-secondary-button>
                         </form>
                     </div>
     
@@ -60,7 +60,7 @@
                                 <label for="name" class="block text-gray-700 text-sm font-bold">Enter the kitchen name:</label>
                                 <input placeholder="Name here" type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
-                            <button type="submit" class="bg-green-500 hover:bg-green-700 border font-bold py-3 px-4 rounded">Create</button>
+                            <x-secondary-button type="submit" class="bg-green-500 hover:bg-green-700 border font-bold py-3 px-4 rounded">Create</x-secondary-button>
                         </form>
                     </div>  
                 </div>

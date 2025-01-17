@@ -73,12 +73,12 @@
                 </div>
             </div>
 
-            {{-- @if ($isOwner) --}}
+            @if ($isOwner)
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6 p-6">
                         <h2 class="text-xl font-semibold">Admin settings</h2>
                         <p>Check all kitchen transactions or delete the kitchen</p>
                         <div class="w-full grid grid-cols-2 gap-6 items-center mb-6">
-                        {{-- go to transactions-details.blade.php with htmx --}}
+                            {{-- go to transactions-details.blade.php with htmx --}}
                             <div class="py-6">
                                 <x-primary-button href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
                                 hx-get="/transactions/{{ $kitchen->id }}" 
@@ -128,7 +128,7 @@
                             </x-modal>
                         </div>
                 </div>
-            {{-- @endif --}}
+            @endif
         </div>
     </div>
 </x-app-layout>

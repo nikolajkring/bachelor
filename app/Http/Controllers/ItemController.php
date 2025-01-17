@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Models\Item;
 use App\Models\Credit;
 use App\Models\Debit;
+use App\Models\UserKitchen;
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
@@ -28,7 +29,16 @@ class ItemController extends Controller
     {
         $kitchen = Kitchen::findOrFail($id);
         $items = Item::where('kitchen_id', $id)->get();
-        return view('kitchen-details', compact('kitchen', 'items'));
+
+        // Check if the user is the owner of the kitchen
+        $isOwner = UserKitchen::where('user_id', Auth::id())
+            ->where('kitchen_id', $id)
+            ->where('is_owner', true)
+            ->exists();    
+
+
+
+        return view('kitchen-details', compact('kitchen', 'items', 'isOwner'));
     }
 
     public function decrement(Request $request, $id)

@@ -6,6 +6,7 @@ use App\Models\Kitchen;
 use App\Models\UserKitchen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 
@@ -25,11 +26,8 @@ class KitchenController extends Controller
     public function show($id)
     {
         $kitchen = Kitchen::with('userKitchens')->findOrFail($id);
-        $user = Auth::user();
-        $userKitchen = $kitchen->userKitchens()->where('user_id', $user->id)->first();
-        $isOwner = $userKitchen ? $userKitchen->is_owner : false;
-
-        return view('kitchen-details', compact('kitchen', 'isOwner'));
+        
+        return view('kitchen-details', compact('kitchen'));
     }
 
     public function create(Request $request)

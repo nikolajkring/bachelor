@@ -10,7 +10,7 @@ class UserKitchen extends Model
     use HasFactory;
 
     protected $table = 'user_kitchen';
-    protected $fillable = ['user_id', 'kitchen_id'];
+    protected $fillable = ['user_id', 'kitchen_id', 'is_owner'];
 
     public function user()
     {

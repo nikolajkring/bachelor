@@ -2,7 +2,7 @@
     <form method="POST" 
         action="{{ route('items.update', ['id' => $item->id]) }}" 
         hx-put="{{ route('items.update', ['id' => $item->id]) }}" 
-        hx-target="#item-{{ $item->id }}" 
+        hx-target="#items-container" 
         hx-swap="outerHTML">
         @csrf
         @method('PUT')

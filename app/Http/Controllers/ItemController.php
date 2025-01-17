@@ -94,7 +94,7 @@ class ItemController extends Controller
         $item->kitchen_id = $request->kitchen_id;
         $item->save();
         
-        $amount_bought = $request->input('amount_bought');
+        $amount = $request->amount;
         $items = Item::where('kitchen_id', $request->kitchen_id)->get();
 
         // Create a new transaction record
@@ -103,8 +103,8 @@ class ItemController extends Controller
             'kitchen_id' => $item->kitchen_id,
             'user_id' => Auth::id(), 
             'price' => $item->price,
-            'amount' => $amount_bought,
-            'total' => $item->price * $amount_bought,
+            'amount' => $amount,
+            'total' => $item->price * $amount,
         ]);
 
         // Create debit record
@@ -115,7 +115,7 @@ class ItemController extends Controller
             // get the last transactions user_id
             'user_id' => Transaction::latest()->first()->user_id,
             // make the total negative because it's a cost for the kitchen
-            'total' => $item->price * $amount_bought,
+            'total' => $item->price * $amount,
         ]);
 
         // Create credit record
@@ -126,7 +126,7 @@ class ItemController extends Controller
             // get the last transactions user_id
             'user_id' => Transaction::latest()->first()->user_id,
             // make the total negative because it's a cost for the kitchen
-            'total' => ($item->price * $amount_bought) * -1,
+            'total' => ($item->price * $amount) * -1,
         ]);
 
         return view('partials.items', compact('items'));

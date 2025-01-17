@@ -57,7 +57,7 @@
                             <label for="amount">Amount:</label>
                             <input type="number" name="amount" id="amount" required>
                         </div>
-                        <x-secondary-button type="submit" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 mt-2 rounded">Add item</x-secondary-button>
+                        <x-primary-button type="submit" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 mt-2 rounded">Add item</x-primary-button>
                     </form>
                 </div>  
             </div>
@@ -67,9 +67,9 @@
                 {{-- Show your transactions --}}
                 <h2 class="text-xl font-semibold">See your kitchen transactions and settle your account</h2>
                 <div class="py-6">
-                    <x-secondary-button href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
+                    <x-primary-button href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
                     hx-get="/transactions/{{ $kitchen->id }}/{{ Auth::user()->id }}" 
-                    hx-target="#dashboard_container">Your kitchen transactions</x-secondary-button>
+                    hx-target="#dashboard_container">Your kitchen transactions</x-primary-button>
                 </div>
             </div>
 
@@ -80,9 +80,9 @@
                         <div class="w-full grid grid-cols-2 gap-6 items-center mb-6">
                         {{-- go to transactions-details.blade.php with htmx --}}
                             <div class="py-6">
-                                <x-secondary-button href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
+                                <x-primary-button href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 
                                 hx-get="/transactions/{{ $kitchen->id }}" 
-                                hx-target="#dashboard_container">Kitchen transactions</x-secondary-button>
+                                hx-target="#dashboard_container">Kitchen transactions</x-primary-button>
                             </div>
                             
                             {{-- wanna delete the kitchen? --}}
@@ -129,7 +129,6 @@
                         </div>
                 </div>
             {{-- @endif --}}
-
         </div>
     </div>
 </x-app-layout>

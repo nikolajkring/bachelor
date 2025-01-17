@@ -13,7 +13,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     {{-- show all transactions related to the kitchen from the transactions table --}}
                     <div class="w-full grid grid-cols-2 gap-6 items-center">
-                        <h1 class="font-semibold text-xl">Kitchen balance {{ $debits->sum('total') - $credits->sum('total') }}</h1>
+                        <h1 class="font-semibold text-xl">Kitchen balance {{ $debits->sum('total') + $credits->sum('total') }}</h1>
                         {{-- Go back to kitchen btn with htmx --}}
                         <div class="col-span-2 flex justify-end">
                             <x-secondary-button href="#" class="bg-blue-500 hover:bg-blue-700 border font-bold py-2 px-4 rounded" 

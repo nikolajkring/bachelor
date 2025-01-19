@@ -1,4 +1,4 @@
-<div id="item-{{ $item->id }}" class="border rounded py-2 px-3 mb-4">
+<div id="item-{{ $item->id }}" class="border rounded py-2 px-3">
     <form method="POST" 
         action="{{ route('items.update', ['id' => $item->id]) }}" 
         hx-put="{{ route('items.update', ['id' => $item->id]) }}" 

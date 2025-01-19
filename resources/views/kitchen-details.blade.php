@@ -111,7 +111,7 @@
                                     </h2>
 
                                     <p class="mt-1 text-sm text-gray-600">
-                                        {{ __('Once your kitchen is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete this kitchen.') }}
+                                        {{ __('Once your kitchen is deleted, all of its resources and data will be permanently deleted.') }}
                                     </p>
 
                                     <div class="mt-6 flex justify-end">

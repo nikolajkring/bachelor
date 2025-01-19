@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Models\Credit;
 use App\Models\Debit;
 use App\Models\Kitchen;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -112,10 +113,16 @@ class TransactionController extends Controller
     {
         $kitchen = Kitchen::findOrFail($kitchen_id);
         $transactions = Transaction::where('kitchen_id', $kitchen_id)->where('user_id', $user_id)->get();
-        $credits = Credit::where('kitchen_id', $kitchen_id)->where('user_id', $user_id)->where('settled', false)->get();
+        $credits = Credit::where('kitchen_id', $kitchen_id)->where('user_id', $user_id)->where('settled', false)->where('total', '>', 0)->get();
         $debits = Debit::where('kitchen_id', $kitchen_id)->where('user_id', $user_id)->where('settled', false)->where('total', '>', 0)->get();
 
-  
+        // get phone number of users you owe money
+        $users_owe = [];
+        foreach ($credits as $credit) {
+            $user = User::findOrFail($credit->user_id);
+            $users_owe[] = $user;
+        }
+
 
         return view('user_transactions-details', compact('kitchen', 'transactions', 'credits', 'debits'));
     }

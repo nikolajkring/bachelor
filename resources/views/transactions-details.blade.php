@@ -32,22 +32,22 @@
                             <thead>
                                 <tr>
                                     <th class="px-4 py-2">Id</th>
+                                    <th class="px-4 py-2">User name</th>
+                                    <th class="px-4 py-2">Item Name</th>
                                     <th class="px-4 py-2">Amount</th>
                                     <th class="px-4 py-2">Total</th>
                                     <th class="px-4 py-2">Date</th>
-                                    <th class="px-4 py-2">User Id</th>
-                                    <th class="px-4 py-2">Item Name</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($transactions as $transaction)
                                     <tr>
                                         <td class="border px-4 py-2">{{ $transaction->id }}</td>
+                                        <td class="border px-4 py-2">{{ $transaction->user->name }}</td>
+                                        <td class="border px-4 py-2">{{ $transaction->item->name }}</td>
                                         <td class="border px-4 py-2">{{ $transaction->amount }}</td>
                                         <td class="border px-4 py-2">{{ $transaction->total }}</td>
                                         <td class="border px-4 py-2">{{ $transaction->created_at }}</td>
-                                        <td class="border px-4 py-2">{{ $transaction->user->name }}</td>
-                                        <td class="border px-4 py-2">{{ $transaction->item->name }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
